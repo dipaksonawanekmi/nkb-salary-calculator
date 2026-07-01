@@ -232,14 +232,39 @@
     background:var(--paper);
     min-height:960px;
   }
+  .calc-frame-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
   .calc-frame-label{
     font-family:'IBM Plex Mono',monospace;
     font-size:11px;
     letter-spacing:0.08em;
     text-transform:uppercase;
     color:var(--gray);
-    margin-bottom:18px;
   }
+  .btn-print{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--white);
+    border:1px solid var(--line);
+    color:var(--navy);
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:4px;
+    cursor:pointer;
+  }
+  .btn-print:hover{
+    background:var(--navy);
+    color:var(--white);
+    border-color:var(--navy);
+  }
+  .btn-print:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
   .calconic-calculator{
     width:100%;
   }
@@ -294,6 +319,35 @@
     .step{border-right:none;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:24px;}
     .benefits{grid-template-columns:1fr;gap:24px;}
     .hero-cta{flex-direction:column;align-items:flex-start;}
+  }
+  /* ---------- Print ---------- */
+  @media print{
+    header, .hero, .section:not(.calc-section), footer, .btn-print{
+      display:none !important;
+    }
+    .calc-section{
+      border:none;
+      padding:0;
+    }
+    .calc-wrap{
+      max-width:100%;
+      padding:0;
+    }
+    .calc-layout{
+      display:block;
+    }
+    .calc-layout .section-head{
+      position:static;
+      margin-bottom:16px;
+    }
+    .calc-frame{
+      border:none;
+      padding:0;
+      min-height:0;
+    }
+    body{
+      background:var(--white);
+    }
   }
 </style>
 </head>
@@ -357,7 +411,13 @@
         <p>Fill in the fields on the right. Nothing is saved until you copy it into the offer.</p>
       </div>
       <div class="calc-frame">
-        <div class="calc-frame-label">Salary proposal calculator</div>
+        <div class="calc-frame-top">
+          <div class="calc-frame-label">Salary proposal calculator</div>
+          <button class="btn-print" onclick="window.print()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print
+          </button>
+        </div>
 
         <div class="calconic-calculator"  data-calculatorid="6a437a6e0449c90030f2a35e"></div>
         <script>
